@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
   private RecyclerView rvListItems;
@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     rvListItems.setLayoutManager(verticalLayoutManager);
 
-    ArrayList<String> strings = (ArrayList<String>) Arrays.asList("A", "B", "C", "D", "E", "F");
+    List<String> strings =  Arrays.asList("A", "B", "C", "D", "E", "F");
     adapter = new SimpleListAdapter(strings);
 
     rvListItems.setAdapter(adapter);

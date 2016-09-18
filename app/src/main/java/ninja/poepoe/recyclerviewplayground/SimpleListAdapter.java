@@ -5,16 +5,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Poe Poe on 19/9/16.
  */
 
 public class SimpleListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-  private ArrayList<String> listItems;
+  private List<String> listItems;
 
-  public SimpleListAdapter(ArrayList<String> listItems) {
+  public SimpleListAdapter(List<String> listItems) {
     this.listItems = listItems;
   }
 
