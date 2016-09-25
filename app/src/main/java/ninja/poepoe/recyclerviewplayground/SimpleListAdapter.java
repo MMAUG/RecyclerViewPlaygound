@@ -35,11 +35,6 @@ public class SimpleListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     notifyItemRangeChanged(listItems.size() - newListItems.size(), newListItems.size());
   }
 
-  public void deleteItem(int position) {
-    listItems.remove(position);
-    notifyItemRemoved(position);
-  }
-
   public void addItemAtLastPosition(String string) {
     listItems.add(string);
     //notify item is added at the last of row
@@ -50,6 +45,16 @@ public class SimpleListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     listItems.add(0, string);
     //notify item is added at the first row
     notifyItemInserted(0);
+  }
+
+  public void changeItem(int position, String text) {
+    listItems.set(position,text);
+    notifyItemChanged(position);
+  }
+
+  public void deleteItem(int position) {
+    listItems.remove(position);
+    notifyItemRemoved(position);
   }
 
   @Override public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
