@@ -34,6 +34,19 @@ public class MainActivity extends AppCompatActivity
     //set click listener
     adapter.setOnClickListener(this);
 
+    adapter.setOnClickListener(new CustomClickListener() {
+      @Override public void onItemClick(int position) {
+
+      }
+
+      @Override public void onItemLongClick(int position) {
+
+      }
+
+      @Override public void onDeleteItemClick(int position) {
+
+      }
+    });
     //set adapter to recyclerview
     rvListItems.setAdapter(adapter);
 
