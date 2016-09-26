@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import java.util.List;
 
@@ -48,7 +49,7 @@ public class SimpleListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
   }
 
   public void changeItem(int position, String text) {
-    listItems.set(position,text);
+    listItems.set(position, text);
     notifyItemChanged(position);
   }
 
@@ -76,16 +77,22 @@ public class SimpleListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
   public class SimpleViewHolder extends RecyclerView.ViewHolder
       implements View.OnClickListener, View.OnLongClickListener {
     TextView textView;
+    ImageButton imageButton;
+
     public SimpleViewHolder(View itemView) {
       super(itemView);
 
       textView = (TextView) itemView.findViewById(R.id.textView);
+      imageButton = (ImageButton) itemView.findViewById(R.id.imageButton);
 
       //set normal on click listener
       itemView.setOnClickListener(this);
 
       //set normal on long click listener
       itemView.setOnLongClickListener(this);
+
+      //set click listener to delete button
+      imageButton.setOnClickListener(this);
     }
 
     @Override public void onClick(View view) {
@@ -96,7 +103,11 @@ public class SimpleListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
       //then we will ignore the click event
       if (position == -1) return; //the rest line will not execute if position ==-1
 
-      onClickListener.onItemClick(position);
+      if (view.getId() == imageButton.getId()) { // click on delete button
+        onClickListener.onDeleteItemClick(position);
+      } else { //click on item
+        onClickListener.onItemClick(position);
+      }
     }
 
     @Override public boolean onLongClick(View view) {

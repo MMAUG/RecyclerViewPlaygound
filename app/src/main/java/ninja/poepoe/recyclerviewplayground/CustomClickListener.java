@@ -8,5 +8,7 @@ public interface CustomClickListener {
   void onItemClick(int position);
 
   void onItemLongClick(int position);
+
+  void onDeleteItemClick(int position);
 }
 
