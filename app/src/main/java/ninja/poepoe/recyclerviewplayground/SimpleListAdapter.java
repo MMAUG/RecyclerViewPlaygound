@@ -98,10 +98,14 @@ public class SimpleListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     @Override public void onClick(View view) {
       int position = getAdapterPosition();
 
-      // getAdapterPosition() will be -1 if recyclerview is recalculating item ranged
+      // getAdapterPosition() will be -1 if recyclerview is recalculating item range
       //if user click in that time it will return -1
       //then we will ignore the click event
       if (position == -1) return; //the rest line will not execute if position ==-1
+
+      if (onClickListener == null) {
+        return; // no listener is set
+      }
 
       if (view.getId() == imageButton.getId()) { // click on delete button
         onClickListener.onDeleteItemClick(position);
@@ -119,6 +123,9 @@ public class SimpleListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
       //then we will ignore the click event
       if (position == -1) return false; // nothing to do
 
+      if (onClickListener == null) {
+        return false; // no listener is set
+      }
       onClickListener.onItemLongClick(position);
 
       return true;
