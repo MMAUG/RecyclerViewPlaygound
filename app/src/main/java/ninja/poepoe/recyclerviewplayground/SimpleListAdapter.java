@@ -13,6 +13,11 @@ import java.util.List;
  */
 
 public class SimpleListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+
+  private static final int TYPE_HEADER = 0;
+  private static final int TYPE_ITEM = 1;
+  private static final int TYPE_FOOTER = 2;
+
   private List<String> listItems;
   private CustomClickListener onClickListener;
 
@@ -58,7 +63,26 @@ public class SimpleListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     notifyItemRemoved(position);
   }
 
+  @Override public int getItemViewType(int position) {
+    // position 0 for header
+    // 1 =< position <= listItems.size  for Item Type
+    // last position for footer
+    if (position == 0) {
+      return TYPE_HEADER;
+    }
+    return position <= listItems.size() ? TYPE_ITEM : TYPE_FOOTER;
+  }
+
   @Override public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    if (viewType == TYPE_HEADER) {
+
+    }
+
+    if (viewType == TYPE_FOOTER) {
+
+    }
+
+    // else item view type
     View view =
         LayoutInflater.from(parent.getContext()).inflate(R.layout.row_simple_list, parent, false);
     return new SimpleViewHolder(view);
@@ -71,7 +95,10 @@ public class SimpleListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
   }
 
   @Override public int getItemCount() {
-    return listItems.size();
+    int itemSize = listItems.size();
+    itemSize++; // increase +1 for header
+    itemSize++; // increase +1 for footer
+    return itemSize;
   }
 
   public class SimpleViewHolder extends RecyclerView.ViewHolder
