@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashSet;
 
 /**
@@ -17,12 +16,16 @@ import java.util.HashSet;
 public class MultipleChoiceAdapter
     extends RecyclerView.Adapter<MultipleChoiceAdapter.MultipleChoiceHolder> {
 
-  private ArrayList<String> dataList;
+  private ArrayList<String> dataList = new ArrayList<>();
   private HashSet<String> chosenList;
 
-  public MultipleChoiceAdapter(Collection<String> dataList, HashSet<String> chosenList) {
-    this.dataList = new ArrayList<>(dataList);
+  public MultipleChoiceAdapter(HashSet<String> chosenList) {
     this.chosenList = chosenList;
+  }
+
+  public void setDataList(ArrayList<String> dataList) {
+    this.dataList = dataList;
+    notifyDataSetChanged();
   }
 
   public void removeItem(String item) {
